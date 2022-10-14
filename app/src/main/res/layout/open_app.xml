@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5B784D">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="515dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="158dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/savedContact"
+            android:layout_width="match_parent"
+            android:layout_height="515dp"
+            android:background="#CEDCD2" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/headline"
+        android:layout_width="233dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="39dp"
+        android:text="ReminderMe"
+        android:textSize="30dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addBtn"
+        android:layout_width="82dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="283dp"
+        android:layout_marginBottom="51dp"
+        android:backgroundTint="#00E5EDE5"
+        android:clickable="true"
+        android:foreground="@drawable/plusman"
+        app:rippleColor="@color/purple_200" />
+
+</RelativeLayout>
