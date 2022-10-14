@@ -17,6 +17,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
     private ContactClickListener contactClickListener;
     private ContactAdapter adapter;
 
+
     /** main activity implements this interface**/
     public interface ContactClickListener
     {
