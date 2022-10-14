@@ -248,7 +248,6 @@ public class MainFragment extends Fragment
     }
     private void setDataToAdapter()
     {
-
         initRecyclerView();
     }
 
@@ -260,7 +259,6 @@ public class MainFragment extends Fragment
     }
 
     /** saving date and time for picked contact functions into text file called fropm Contact Data Fragment**/
-
     public void saveContactTime(String name,Integer mYear,Integer mMonth,Integer mDay,Integer mHour,Integer mMinute)
     {
 
