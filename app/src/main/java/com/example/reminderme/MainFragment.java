@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class MainFragment extends Fragment {
-
+public class MainFragment extends Fragment
+{
     private ContactListFragment contactListFragment;
     private ContactAdapter contactAdapter;
     private ContactAdapter savedContactAdapter;
@@ -41,7 +41,9 @@ public class MainFragment extends Fragment {
     private List<String> savedTimeList;
 
 
-    public MainFragment(Context context, List<Contact> contactList, List<Contact> savedContactList, FragmentManager manager, ContactAdapter contactAdapter, ContactAdapter savedContactAdapter) {
+    public MainFragment(Context context, List<Contact> contactList, List<Contact> savedContactList,
+                        FragmentManager manager, ContactAdapter contactAdapter, ContactAdapter savedContactAdapter)
+    {
         this.contactList = contactList;
         this.manager = manager;
         this.context = context;
@@ -93,10 +95,13 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        try {
+    public void onAttach(@NonNull Context context)
+    {
+        try
+        {
 
-        } catch (ClassCastException e) {
+        } catch (ClassCastException e)
+        {
             throw new ClassCastException("the class " +
                     getActivity().getClass().getName() +
                     " must implements the interface 'ClickHandler'");
@@ -105,39 +110,42 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         return inflater.inflate(R.layout.open_app, container, false);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
         super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
         view.findViewById(R.id.addBtn).setOnClickListener(handleAddContactClick);
         savedRecyclerView = view.findViewById(R.id.savedContact);
         setDataToAdapter();
         savedTimeList = new ArrayList<String>();
 
-
-
         sp = PreferenceManager.getDefaultSharedPreferences(context);
         //**********shared preference block **********
         Boolean val = sp.getBoolean("check_box_preference_1", false);//getting value(boolean) from Shared Preferences xml
-        if (val) {
+        if (val)
+        {
 
             /** loading contact with shared preferance **/
             SavedContactsSet = (HashSet) sp.getStringSet("Contacts", null);
             if (SavedContactsSet == null)
                 SavedContactsSet = new HashSet();
-            else {
-                for (String name : SavedContactsSet) {
+            else
+            {
+                for (String name : SavedContactsSet)
+                {
 
-                    for (int i = 0; i < contactList.size(); i++) {
+                    for (int i = 0; i < contactList.size(); i++)
+                    {
                         Contact contact = contactList.get(i);
                         if (contact.getName().equals(name))
                             savedContactList.add(contact);
@@ -149,7 +157,8 @@ public class MainFragment extends Fragment {
 
             String savedTimeFile = readFromFile(context);
 
-            if (!savedTimeFile.equals("")) {
+            if (!savedTimeFile.equals(""))
+            {
                 String newString = savedTimeFile.substring(2, savedTimeFile.length() - 1);
                 String[] StringArray = newString.split(", ");
 
@@ -189,7 +198,8 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private Contact getContacFromListByName(String name) {
+    private Contact getContacFromListByName(String name)
+    {
         for (int i = 0; i < savedContactList.size(); i++)
         {
             Contact contact = savedContactList.get(i);
@@ -202,8 +212,10 @@ public class MainFragment extends Fragment {
 
     /**pressing add new contact button switches to Contact List Fragment **/
 
-    private View.OnClickListener handleAddContactClick = new View.OnClickListener(){
-        public void onClick(View arg0) {
+    private View.OnClickListener handleAddContactClick = new View.OnClickListener()
+    {
+        public void onClick(View arg0)
+        {
             //FloatingActionButton addButton = (FloatingActionButton)arg0;
 
             if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE)
@@ -221,23 +233,27 @@ public class MainFragment extends Fragment {
     };
 
     /** called from Contact Data Fragment**/
-    public void editSharedPrefrence() {
+    public void editSharedPrefrence()
+    {
         SharedPreferences.Editor edit = sp.edit();
         edit.remove("Contacts").apply();
         edit.putStringSet("Contacts", SavedContactsSet).apply();
         savedContactAdapter.notifyDataSetChanged();
 
     }
-    public HashSet<String> getSet() {
+    public HashSet<String> getSet()
+    {
 
         return SavedContactsSet;
     }
-    private void setDataToAdapter(){
+    private void setDataToAdapter()
+    {
 
         initRecyclerView();
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView()
+    {
         savedRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         savedRecyclerView.setHasFixedSize(true);
         savedRecyclerView.setAdapter(savedContactAdapter);
@@ -277,7 +293,8 @@ public class MainFragment extends Fragment {
     }
 
 
-    private void writeToFile(String data, Context context) {
+    private void writeToFile(String data, Context context)
+    {
         try {
 
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("savedTime.txt", Context.MODE_PRIVATE));
@@ -292,7 +309,8 @@ public class MainFragment extends Fragment {
 
         String ret = "";
 
-        try {
+        try
+        {
             InputStream inputStream = context.openFileInput("savedTime.txt");
 
             if (inputStream != null) {
